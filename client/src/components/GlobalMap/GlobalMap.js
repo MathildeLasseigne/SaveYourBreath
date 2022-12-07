@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './GlobalMap.css';
 
 
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 
 
 // hack so that leaflet's images work after going through webpack
@@ -26,6 +26,25 @@ const GlobalMap = () => {
 
   // States
   // const [value, updateValue] = useState(0);
+  const [gpxData, setGpxData] = useState([]);
+
+  useEffect(() => {
+    //fetch trail.gpx from server
+    const fetchGpxData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/mygeojson");
+        const json = await response.json();
+        const { results } = json;
+        // Only put the results in state, ie, the actual coordinates array
+        setGpxData(results);
+        console.log('gpx data fetched', json);
+      } catch (error) {
+        console.log("could not fetch gpx data: ", error);
+      }
+    };
+
+    fetchGpxData();
+  }, []);
 
   return (
     <MapContainer
@@ -36,6 +55,11 @@ const GlobalMap = () => {
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Polyline
+        pathOptions={{ fillColor: 'red', color: 'blue' }}
+        positions={[[48.7107847, 2.1714978],
+        [48.71052834675527, 2.172627104448315]]}
       />
       <Marker position={position}>
         <Popup>

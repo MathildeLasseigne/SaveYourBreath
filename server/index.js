@@ -41,7 +41,7 @@ app.get('/mygeojson', function (req, res) {
     let myarr2 = []
 
     for (pt of jObj.gpx.trk.trkseg.trkpt)
-      myarr2.push([pt.lon, pt.lat])
+      myarr2.push([pt.lat, pt.lon])
 
 
     geoj = {
@@ -63,7 +63,8 @@ app.get('/mygeojson', function (req, res) {
       ]
     }
 
-    res.json(geoj);
+    // res.json(geoj);
+    res.json(myarr2);
     res.end();
   });
 });
