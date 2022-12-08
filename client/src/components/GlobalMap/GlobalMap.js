@@ -28,15 +28,16 @@ const GlobalMap = () => {
   // const [value, updateValue] = useState(0);
   const [gpxData, setGpxData] = useState([]);
 
+  // const gpxFakeData = [[48.7107847, 2.1714978], [48.71052834675527, 2.172627104448315]];
+
   useEffect(() => {
     //fetch trail.gpx from server
     const fetchGpxData = async () => {
       try {
         const response = await fetch("http://localhost:8080/mygeojson");
         const json = await response.json();
-        const { results } = json;
         // Only put the results in state, ie, the actual coordinates array
-        setGpxData(results);
+        setGpxData(json);
         console.log('gpx data fetched', json);
       } catch (error) {
         console.log("could not fetch gpx data: ", error);
@@ -58,8 +59,7 @@ const GlobalMap = () => {
       />
       <Polyline
         pathOptions={{ fillColor: 'red', color: 'blue' }}
-        positions={[[48.7107847, 2.1714978],
-        [48.71052834675527, 2.172627104448315]]}
+        positions={gpxData}
       />
       <Marker position={position}>
         <Popup>
