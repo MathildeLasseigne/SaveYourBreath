@@ -1,7 +1,11 @@
 const express = require('express');
-const session = require('express-session')
+
+
+const session = require('express-session');
+var cors = require('cors');
 
 const app = express();
+app.use(cors());
 const port = 8080;
 
 const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser");

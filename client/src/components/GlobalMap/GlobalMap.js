@@ -34,9 +34,11 @@ const GlobalMap = () => {
     //fetch trail.gpx from server
     const fetchGpxData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/mygeojson");
+        const url = "http://localhost:8080/mygeojson";
+        // if using github codespace
+        // const url = "https://d-bao-organic-telegram-647p6q7ww77246pw-8080.preview.app.github.dev/mygeojson";
+        const response = await fetch(url);
         const json = await response.json();
-        // Only put the results in state, ie, the actual coordinates array
         setGpxData(json);
         console.log('gpx data fetched', json);
       } catch (error) {
