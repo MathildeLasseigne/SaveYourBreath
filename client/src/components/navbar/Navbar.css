@@ -21,13 +21,17 @@
     text-decoration: none;
 }
 
-/* .navbar-item.active {
-    background-color: #638de9;
+.navbar-item.active {
+    background-color: #6f93df;
     color: white;
-} */
+}
 
 .navbar-item--icon {
     width: 32px;
+}
+
+.active .navbar-item--icon {
+    filter: invert(100%);
 }
 
 .navbar-item--title {
