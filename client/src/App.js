@@ -2,8 +2,12 @@ import './App.css';
 import AccountPage from './pages/AccountPage/AccountPage';
 import HomePage from './pages/HomePage/HomePage';
 import TracksPage from './pages/TracksPage/TracksPage';
-import { Routes, Route } from "react-router-dom"
-import Navbar from './components/navbar/Navbar';
+import LoginPage from './pages/Login/LoginPage';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+import RequireLogin from './components/RequireLogin';
 
 function App() {
   return (
@@ -12,11 +16,23 @@ function App() {
         Save your breath
       </header>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="tracks" element={<TracksPage />} />
-        <Route path="account" element={<AccountPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="/" element={
+          <RequireLogin>
+            <HomePage />
+          </RequireLogin>
+        } />
+        <Route path="tracks" element={
+          <RequireLogin>
+            <TracksPage />
+          </RequireLogin>
+        } />
+        <Route path="account" element={
+          <RequireLogin>
+            <AccountPage />
+          </RequireLogin>
+        } />
       </Routes>
-      < Navbar/>
     </div>
   );
 }
