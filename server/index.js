@@ -1,16 +1,40 @@
 const express = require('express');
+const cors = require('cors');
+const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser");
 
-
-const session = require('express-session');
-var cors = require('cors');
+const { loginUser } = require('./controllers/authController');
 
 const app = express();
 app.use(cors());
+app.use(express.json());
+
 const port = 8080;
 
-const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser");
+// TODO
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const options = {
+const database = process.env.DATABASE_URL;
+console.log(database);
+
+/* mongoose.connect(database, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+}) */
+mongoose.connect(database, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(connection => {
+  console.log(`database is successful`);
+})
+.catch(err => {
+  console.log(`database connection error: ${err.message}`);
+});
+
+const XMLParserOptions = {
   attributeNamePrefix: "",
   //attrNodeName: false,
   //textNodeName : "#text",
@@ -18,22 +42,16 @@ const options = {
   ignoreNameSpace: false,
 };
 
-const parser = new XMLParser(options);
-
-app.use(session({ secret: 'keybo#$%SFTHHET@#435tihuard cat', cookie: { maxAge: 60 * 60 * 24 * 1000 } }))
-// to make session user variable available everywhere
-app.use(function (req, res, next) {
-  res.locals.user = req.session.user;
-  next();
-});
+const parser = new XMLParser(XMLParserOptions);
 
 // parsing the incoming data
 app.use(express.urlencoded({ extended: true }));
 
 // serving public file
-// app.use(express.static(__dirname));
-
 const fs = require('fs');
+
+// app login and register
+app.post('/login', loginUser);
 
 // test
 app.get('/mygeojson', function (req, res) {
@@ -73,11 +91,7 @@ app.get('/mygeojson', function (req, res) {
   });
 });
 
-app.get('/', function (req, res) {
-  // TODO, to be decided
-
-})
-
 app.listen(port, () => {
   console.log(`Now listening on port ${port}`);
+  console.log("database is ", database);
 });
