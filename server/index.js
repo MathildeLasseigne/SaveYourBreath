@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser");
 
-const { loginUser } = require('./controllers/authController');
+const { loginUser, registerUser } = require('./controllers/authController');
 
 const app = express();
 app.use(cors());
@@ -10,12 +10,11 @@ app.use(express.json());
 
 const port = 8080;
 
-// TODO
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', true); // to suppress DeprecationWarning
 require('dotenv').config();
 
 const database = process.env.DATABASE_URL;
-console.log(database);
 
 /* mongoose.connect(database, {
   useNewUrlParser: true,
@@ -52,6 +51,7 @@ const fs = require('fs');
 
 // app login and register
 app.post('/login', loginUser);
+app.post('/register', registerUser);
 
 // test
 app.get('/mygeojson', function (req, res) {
