@@ -2,3 +2,101 @@
     font-family: sans-serif;
     text-align: center;
 }
+
+.button {
+    margin-top: 1em;
+    border-radius: 0.3em;
+    background-color: #6F93DF;
+    border: none;
+    color: white;
+    padding: 0.3em 1em 0.3em 1em;
+    text-align: center;
+}
+
+.button:hover {
+    box-shadow: 0 0.75em 0.6em 0 rgba(0, 0, 0, 0.24), 0 1.06em 3.125em 0 rgba(0, 0, 0, 0.19);
+}
+
+.parent-of-spaced>*:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+#loginbox {
+    border-radius: 1em;
+    background: #ececec;
+    padding: 2em;
+    margin-bottom: 5em;
+}
+
+label {
+    font-weight: bold;
+}
+
+.info-icon {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    float: right;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.tooltip-image[type="checkbox"] {
+    position: absolute;
+    content: url('https://i.postimg.cc/1RK1Qd5y/info-button.png');
+}
+
+
+.native-hidden {
+    /*Hide the basic appearence, replace it by content*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/*.tooltip-image:not(:hover) > div {
+    display: none;
+}
+*/
+
+.tooltip-image:checked+.tooltip-text {
+    display: inline-block;
+}
+
+.tooltip-text {
+    position: absolute;
+    display: none;
+    font-size: 80%;
+    text-align: center;
+    width: 10em;
+    top: -100%;
+    left: 200%;
+    background-color: #f9f9f9;
+    border: 0.125em solid #e0e0e0;
+    border-radius: 0.3em;
+    padding: 0.9em;
+}
+
+.big {
+    height: 50%;
+}
+
+.small {
+    width: 30%;
+}
+
+@media (max-width: 480px) {
+    .tooltip-text {
+        position: absolute;
+        display: none;
+        font-size: 80%;
+        text-align: center;
+        width: 10em;
+        top: -4.8em;
+        left: -10em;
+        background-color: #f9f9f9;
+        border: 0.125em solid #e0e0e0;
+        border-radius: 0.3em;
+        padding: 0.9em;
+    }
+}
