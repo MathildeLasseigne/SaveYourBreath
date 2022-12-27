@@ -3,11 +3,11 @@ import { Navigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 const RequireLogin = ({ children }) => {
-    const { authed } = useAuth();
-    return authed === true ? (
+    const { user } = useAuth();
+    return user ? (
         children
     ) : (
-    <Navigate to="/login" />
+        <Navigate to="/login" />
     );
 }
 

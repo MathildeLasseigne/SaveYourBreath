@@ -1,19 +1,18 @@
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
-import './TracksPage.css';
 import AppHeader from '../../components/appheader/AppHeader';
 
-const TracksPage = () => {
+const RoleApplyPage = () => {
     return (
         <>
             <AppHeader className="small" />
             <div>
-                <h1>My tracks</h1>
-                <p>TODO - add content</p>
+                <h1>Apply for contributor</h1>
+
             </div>
             <Navbar />
         </>
     );
 }
 
-export default TracksPage;
+export default RoleApplyPage;

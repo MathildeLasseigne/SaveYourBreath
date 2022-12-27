@@ -8,13 +8,11 @@ import {
   Route,
 } from "react-router-dom";
 import RequireLogin from './components/RequireLogin';
+import RoleApplyPage from './pages/RoleApply/RoleApplyPage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        Save your breath
-      </header>
       <Routes>
         <Route path="login" element={<LoginPage />} />
         <Route path="/" element={
@@ -30,6 +28,11 @@ function App() {
         <Route path="account" element={
           <RequireLogin>
             <AccountPage />
+          </RequireLogin>
+        } />
+        <Route path="roleapply" element={
+          <RequireLogin>
+            <RoleApplyPage />
           </RequireLogin>
         } />
       </Routes>

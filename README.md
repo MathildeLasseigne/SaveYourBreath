@@ -13,3 +13,5 @@ cd client
 npm install
 npm start
 ```
+
+If using Github Codespaces, remember to set the port of the server to public (Ports > Right-click 8080 > Port Visibility > Public)
