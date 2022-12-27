@@ -4,7 +4,7 @@ import './AppHeader.css';
 const AppHeader = (props) => {
     return (
         <header className="App-header">
-            <img src="https://i.postimg.cc/WpCCZG6Z/Logo.png" alt="Logo" className={`logo ${props.className}`} />
+            <img src="https://i.postimg.cc/Y9vw25Yx/Logo.png" alt="Logo" className={`logo ${props.className}`} />
         </header>
     );
 }
