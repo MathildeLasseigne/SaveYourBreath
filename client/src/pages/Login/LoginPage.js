@@ -21,11 +21,11 @@ const LoginPage = () => {
 
     return (
         <div>
-            <div className="vertical-flex align-items-center justify-content-center">
+            <div className="vertical-flex align-content-center justify-content-center">
                 <AppHeader className="big" />
                 <div id="loginbox" className="vertical-flex">
-                    {/* <form action="/login" method="post" className="vertical-flex justify-content-center align-items-center parent-of-spaced"> */}
-                    <form onSubmit={handleLogin} id="login-form" className="vertical-flex justify-content-center align-items-center parent-of-spaced">
+                    {/* <form action="/login" method="post" className="vertical-flex justify-content-center align-content-center parent-of-spaced"> */}
+                    <form onSubmit={handleLogin} id="login-form" className="vertical-flex justify-content-center align-content-center parent-of-spaced">
                         <div className="group-with-label parent-of-spaced">
                             <span>
                                 <label htmlFor="username">Username</label>

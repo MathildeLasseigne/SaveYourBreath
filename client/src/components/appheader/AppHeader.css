@@ -3,3 +3,21 @@
     height: 80%;
 }
 
+.all-width{
+    width: 100%;
+  }
+
+.vertical-flex{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.logo.small{
+    height: auto;
+    width: 40%;
+    align-self: flex-start;
+    justify-self: flex-start;
+}
+
+
