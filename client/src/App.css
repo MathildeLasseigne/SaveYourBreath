@@ -41,10 +41,10 @@ label {
     margin-right: 1em;
 }
 
-.tooltip-image[type="checkbox"] {
-    position: absolute;
+.info-icon[type="checkbox"] {
     content: url('https://i.postimg.cc/1RK1Qd5y/info-button.png');
 }
+
 
 
 .native-hidden {

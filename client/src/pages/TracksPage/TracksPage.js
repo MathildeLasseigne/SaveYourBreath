@@ -33,8 +33,66 @@ const TracksPage = () => {
                     
                     <p>Search for a track to display results</p>
                     
-                    <div id="track-results">
+                    <div id="track-results" className="vertical-flex align-content-center justify-content-center all-width">
                     
+
+                        <table className="track-form margins big">
+                            <tr className="track-form">
+                                <td className="track-form" colspan="3">
+                                <span className="tooltip-icon">                    
+                                <input type="checkbox" id="distance-icon" className="tooltip-image tooltip-icon native-hidden"/>
+                                <div className="tooltip-text small"><span>Distance</span></div>
+                            </span>
+                            <span><span id="distance-entry">56</span><span> km</span></span>
+                            
+                                </td>
+                                
+                                <td className="track-form" colspan="3">
+                                
+                                <span className="tooltip-image tooltip-icon">                    
+                                    <input type="checkbox" id="time-icon" className="tooltip-image tooltip-icon native-hidden"/>
+                                    <div className="tooltip-text small"><span>Time</span></div>
+                                </span>
+                            
+                            <span><span id="time-entry">120</span><span> min</span></span>
+                                </td>
+                            </tr>
+                            
+                            <tr className="track-form">
+                            
+                                <td className="track-form" colspan="2">
+                                <span className="tooltip-image tooltip-icon">                    
+                                    <input type="checkbox" id="trend-up-icon" className="tooltip-image tooltip-icon native-hidden"/>
+                                    <div className="tooltip-text small"><span>Uphill</span></div>
+                                </span>
+                            
+                            <span><span id="uphill-entry">137</span><span> m</span></span>
+                                </td>
+                                
+                                <td className="track-form" colspan="2">
+                                <span className="tooltip-image tooltip-icon">                    
+                                    <input type="checkbox" id="trend-down-icon" className="tooltip-image tooltip-icon native-hidden"/>
+                                    <div className="tooltip-text small"><span>Downhill</span></div>
+                                </span>
+                            
+                            <span><span id="downhill-entry">44</span><span> m</span></span>
+                                </td>
+                                
+                                <td className="track-form" colspan="2">
+                                <span className="tooltip-image tooltip-icon">                    
+                                    <input type="checkbox" id="difficulty-icon" className="tooltip-image tooltip-icon native-hidden"/>
+                                    <div className="tooltip-text small"><span>Difficulty</span></div>
+                                </span>
+                            
+                            <span className="difficulty-flag" id="difficulty-entry"></span>
+                                </td>
+                                
+                            </tr>
+                        
+                        </table>
+
+
+
                     </div>
                 
                 
