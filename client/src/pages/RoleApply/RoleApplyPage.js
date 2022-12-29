@@ -2,7 +2,8 @@ import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import AppHeader from '../../components/appheader/AppHeader';
 import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
+import './RoleApplyPage.css';
 
 const RoleApplyPage = () => {
     const navigate = useNavigate();
@@ -53,11 +54,26 @@ const RoleApplyPage = () => {
         <>
             <AppHeader className="small" />
             <div>
+                {/* <NavLink
+                    to="/account"
+                    className="back-button"
+                >
+                    <img className="navbar-item--icon" src={BackIcon} alt="Back to previous page" />
+                    <span>Back</span>
+                </NavLink> */}
                 <h1>Apply for contributor</h1>
                 <p>Fill out the form below to apply for contributor status.</p>
                 <form onSubmit={handleApply}>
                     <input type="text" name="message" placeholder="Message" id="message" />
-                    <button type="submit">Send</button>
+                    <div className="buttons-container">
+                    <NavLink
+                        to="/account"
+                            className="buttons-container__item"
+                    >
+                        <span>Cancel</span>
+                    </NavLink>
+                        <button className="buttons-container__item" type="submit">Send</button>
+                    </div>
                 </form>
             </div>
             <Navbar />
