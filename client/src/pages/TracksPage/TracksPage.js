@@ -4,6 +4,11 @@ import './TracksPage.css';
 import AppHeader from '../../components/appheader/AppHeader';
 
 const TracksPage = () => {
+
+    const favouriteTrack = (e) => {
+        //TODO: Favourite the track and add it to the 2nd page (in this file)
+    };
+
     return (
         <>
             <AppHeader className="small" />
@@ -38,7 +43,7 @@ const TracksPage = () => {
 
                         <table className="track-form margins big">
                             <tr className="track-form">
-                                <td className="track-form" colspan="3">
+                                <td className="track-form" colspan="6">
                                 <span className="tooltip-icon">                    
                                 <input type="checkbox" id="distance-icon" className="tooltip-image tooltip-icon native-hidden"/>
                                 <div className="tooltip-text small"><span>Distance</span></div>
@@ -47,7 +52,7 @@ const TracksPage = () => {
                             
                                 </td>
                                 
-                                <td className="track-form" colspan="3">
+                                <td className="track-form" colspan="6">
                                 
                                 <span className="tooltip-image tooltip-icon">                    
                                     <input type="checkbox" id="time-icon" className="tooltip-image tooltip-icon native-hidden"/>
@@ -56,11 +61,16 @@ const TracksPage = () => {
                             
                             <span><span id="time-entry">120</span><span> min</span></span>
                                 </td>
+
+                                <td class="track-form" colspan="3">
+                                    <input type="checkbox" onchange={favouriteTrack(this)} className="tooltip-icon-width favourite-button native-hidden"/>
+                                </td>
+
                             </tr>
                             
                             <tr className="track-form">
                             
-                                <td className="track-form" colspan="2">
+                                <td className="track-form" colspan="5">
                                 <span className="tooltip-image tooltip-icon">                    
                                     <input type="checkbox" id="trend-up-icon" className="tooltip-image tooltip-icon native-hidden"/>
                                     <div className="tooltip-text small"><span>Uphill</span></div>
@@ -69,7 +79,7 @@ const TracksPage = () => {
                             <span><span id="uphill-entry">137</span><span> m</span></span>
                                 </td>
                                 
-                                <td className="track-form" colspan="2">
+                                <td className="track-form" colspan="5">
                                 <span className="tooltip-image tooltip-icon">                    
                                     <input type="checkbox" id="trend-down-icon" className="tooltip-image tooltip-icon native-hidden"/>
                                     <div className="tooltip-text small"><span>Downhill</span></div>
@@ -78,7 +88,7 @@ const TracksPage = () => {
                             <span><span id="downhill-entry">44</span><span> m</span></span>
                                 </td>
                                 
-                                <td className="track-form" colspan="2">
+                                <td className="track-form" colspan="5">
                                 <span className="tooltip-image tooltip-icon">                    
                                     <input type="checkbox" id="difficulty-icon" className="tooltip-image tooltip-icon native-hidden"/>
                                     <div className="tooltip-text small"><span>Difficulty</span></div>

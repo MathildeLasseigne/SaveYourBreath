@@ -291,3 +291,16 @@ border-radius: 50%;
 display: inline-block;
 background-color: orange;
 }
+
+.tooltip-icon-width{
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.favourite-button[type="checkbox"]:not(:checked){
+  content: url('https://i.postimg.cc/DZ6ghTXC/heart.png');
+}
+
+.favourite-button[type="checkbox"]:checked{
+  content: url('https://i.postimg.cc/VN5FKkYW/heart-filled.png');
+}
