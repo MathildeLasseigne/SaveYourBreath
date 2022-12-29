@@ -86,3 +86,18 @@
  .margin-top{
    margin-top: 2em;
  }
+
+ .margin-bottom{
+  margin-bottom: 2em;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.message-input{
+  width: 75%;
+  height: 5em;
+  resize:vertical;
+  max-height:30em;;
+}
