@@ -34,7 +34,7 @@ const LoginPage = () => {
                                     <div className="tooltip-text"><span>The mail adress you used to register</span></div>
                                 </span>
                             </span>
-                            <input type="email" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter username" />
+                            <input type="text" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter username" />
                         </div>
                         <div className="group-with-label parent-of-spaced">
                             <label htmlFor="password">Password</label>

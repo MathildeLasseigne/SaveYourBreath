@@ -31,7 +31,11 @@ async function findUserInDummyData(req, res) {
     }
     else if (user.hash === getHashedPassword(req.body.password, user.salt)) {
         console.log("good password");
-        return res.status(200).json({ username: user.username, role: user.role });    }
+        return res.status(200).json({
+            id: user.id,
+            username: user.username,
+            role: user.role });    
+        }
     else {
         return res.status(400).json({ message: 'Wrong username or password' })
     }
@@ -64,6 +68,7 @@ const loginUser = async (req, res) => {
         // check password
         else if (user.validPassword(req.body.password)) {
             return res.status(200).json({
+                id: user._id,
                 username: user.username,
                 role: user.role
             })
