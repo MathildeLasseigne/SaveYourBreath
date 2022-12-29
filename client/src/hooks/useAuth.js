@@ -9,6 +9,7 @@ function useAuth() {
 
     return {
         user,
+        setUser,
         error,
         async login(username, password) {
             const data = {
@@ -36,6 +37,7 @@ function useAuth() {
                     console.log('username is ', data.username);
                     console.log('role is ', data.role);
                     setUser({
+                        id: data.id,
                         username: data.username,
                         role: data.role
                         });

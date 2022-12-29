@@ -3,6 +3,7 @@ const cors = require('cors');
 const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser");
 
 const { loginUser, registerUser } = require('./controllers/authController');
+const { updateUser } = require('./controllers/usersController');
 
 const app = express();
 app.use(cors());
@@ -52,6 +53,7 @@ const fs = require('fs');
 // app login and register
 app.post('/login', loginUser);
 app.post('/register', registerUser);
+app.put('/users/:id', updateUser);
 
 // test
 app.get('/mygeojson', function (req, res) {

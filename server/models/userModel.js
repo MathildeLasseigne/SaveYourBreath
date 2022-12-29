@@ -10,7 +10,7 @@ const UserSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['admin', 'standard']
+        enum: ['admin', 'standard, contributor']
     },
     hash: String,
     salt: String
