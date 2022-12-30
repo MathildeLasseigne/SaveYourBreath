@@ -5,7 +5,7 @@
 ```shell
 cd server
 npm install
-node index
+npm start # if you don't want nodemon to automatically restart your server on code changes, you can run "node index.js" instead
 ```
 2. open another terminal and install dependencies then start the client (React):
 ``` shell
