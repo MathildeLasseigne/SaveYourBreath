@@ -1,9 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser");
+const fs = require('fs');
+// for asynchronous file reading
+const fsPromises = require('fs').promises;
+const fileUpload = require("express-fileupload");
+const path = require("path");
 
 const { loginUser, registerUser } = require('./controllers/authController');
 const { updateUser } = require('./controllers/usersController');
+const { parseAndSendGpx } = require('./controllers/tracksController');
 
 const app = express();
 app.use(cors());
@@ -27,71 +33,92 @@ mongoose.connect(database, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(connection => {
-  console.log(`database is successful`);
-})
-.catch(err => {
-  console.log(`database connection error: ${err.message}`);
-});
-
-const XMLParserOptions = {
-  attributeNamePrefix: "",
-  //attrNodeName: false,
-  //textNodeName : "#text",
-  ignoreAttributes: false,
-  ignoreNameSpace: false,
-};
-
-const parser = new XMLParser(XMLParserOptions);
+  .then(connection => {
+    console.log(`database is successful`);
+  })
+  .catch(err => {
+    console.log(`database connection error: ${err.message}`);
+  });
 
 // parsing the incoming data
 app.use(express.urlencoded({ extended: true }));
-
-// serving public file
-const fs = require('fs');
 
 // app login and register
 app.post('/login', loginUser);
 app.post('/register', registerUser);
 app.put('/users/:id', updateUser);
 
-// test
-app.get('/mygeojson', function (req, res) {
-  fs.readFile('gpx/trail.gpx', 'utf8', function (err, XMLdata) {
+// parse and send the default gpx file
+app.get('/tracks/1', async (req, res) => {
+  const parsedGpx = await parseAndSendGpx('tracks/trail.gpx');
+  console.log("single parsedGpx: ", parsedGpx);
+  res.json(parsedGpx);
+  res.end();
+});
 
-    let jObj = parser.parse(XMLdata);
-    console.log(jObj.gpx.trk.trkseg)
+// parse and send to the client all gpx files in the folder "tracks"
+app.get('/tracks/all', async (req, res) => {
+  const gpxFilesArray = [];
 
-    let myarr2 = []
+  const files = await fsPromises.readdir('tracks')
+    .catch(err => {
+      console.log("error reading tracks folder: ", err);
+      return res.status(400).json({ message: 'Error reading tracks folder.' });
+    });
 
-    for (pt of jObj.gpx.trk.trkseg.trkpt)
-      myarr2.push([pt.lat, pt.lon])
+  for (const file of files) {
+    console.log(file);
+    const parsedGpxFile = await parseAndSendGpx('tracks/' + file);
+    gpxFilesArray.push(parsedGpxFile);
+    console.log("gpxFilesArray length: ", gpxFilesArray.length);
+  };
 
+  console.log("gpxFilesArray FINAL length: ", gpxFilesArray.length);
 
-    geoj = {
-      "type": "FeatureCollection",
-      "features": [
+  return res.json(gpxFilesArray);
+});
 
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "LineString",
-            "coordinates": myarr2
+// save file(s) uploaded to the server in the folder "tracks",
+// then parse them and send back to the client
+app.post('/tracks', fileUpload({ createParentPath: true }),
+  async (req, res) => {
 
-          },
-          "properties": {
-            "prop0": "value0",
-            "prop1": 0.0
-          }
-        }
-      ]
+    // 1) save files to the server
+
+    if (!req.files) {
+      return res.status(400).json({ status: "error", message: "No files were uploaded" });
     }
 
-    // res.json(geoj);
-    res.json(myarr2);
-    res.end();
+    const files = req.files;
+    console.log(files);
+
+    Object.keys(files).forEach(key => {
+      const filepath = path.join(__dirname, 'tracks', files[key].name);
+      files[key].mv(filepath, (err) => {
+        if (err) {
+          return res.status(500).json({ status: "error", message: err });
+        }
+      });
+    });
+    console.log('files uploaded successfully');
+
+    // 2) parse and send back to the client
+
+    const userUploadedGpxFiles = [];
+
+    for (const key of Object.keys(files)) {
+      // reminder: key === files[key].name because of the file upload form in the frontend (GlobalMap.js), may change in the future
+      console.log("key: ", key);
+      console.log("files[key].name: ", files[key].name);
+      const parsedGpxFile = await parseAndSendGpx('tracks/' + files[key].name);
+      userUploadedGpxFiles.push(parsedGpxFile);
+      console.log("userUploadedGpxFiles length: ", userUploadedGpxFiles.length);
+    };
+    console.log("userUploadedGpxFiles FINAL length: ", userUploadedGpxFiles.length);
+
+    return res.json(userUploadedGpxFiles);
+
   });
-});
 
 app.listen(port, () => {
   console.log(`Now listening on port ${port}`);
