@@ -14,8 +14,8 @@
 }
 
 .logo.small{
-    height: auto;
-    width: 40%;
+    height: 64px;
+    width: auto;
     align-self: flex-start;
     justify-self: flex-start;
 }
