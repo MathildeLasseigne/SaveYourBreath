@@ -15,7 +15,7 @@ const RoleApplyPage = () => {
     const url = "https://d-bao-organic-telegram-647p6q7ww77246pw-8080.preview.app.github.dev";
 
     const updateUser = async (inputUser) => {
-    return await fetch(url + '/users/' + user.id, {
+    return fetch(url + '/users/' + user.id, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const RoleApplyPage = () => {
         <>
             <AppHeader className="small" />
             <div className="vertical-flex align-content-center justify-content-center text-align-center margin-bottom">
-              
+
               <h1>Application for contributor</h1>
                 <div>Thank you for trying to join the ranks of our contributors ! </div>
                 <div>
@@ -76,8 +76,8 @@ const RoleApplyPage = () => {
                         <button className="buttons-container__item big button margin-top" type="submit">Send</button>
                     </div>
                 </form>
-                
-                       
+
+
             </div>
             <Navbar />
         </>
