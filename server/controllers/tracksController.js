@@ -29,8 +29,8 @@ const parseAndSendGpx = async (filePath) => {
 
         })
         .catch((err) => {
-            console.error("error reading gpx: ", err);
-            return [];
+            console.error("tracksController error reading gpx ", err);
+            throw err;
         });
 }
 

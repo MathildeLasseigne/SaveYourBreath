@@ -48,12 +48,14 @@ app.post('/login', loginUser);
 app.post('/register', registerUser);
 app.put('/users/:id', updateUser);
 
-// parse and send the default gpx file
+// test: parse and send the default gpx file
 app.get('/tracks/1', async (req, res) => {
-  const parsedGpx = await parseAndSendGpx('tracks/trail.gpx');
+  const parsedGpx = await parseAndSendGpx('tracks/trail.gpx').catch(err => {
+    console.log("error parsing gpx: ", err);
+    return res.status(400).json({ message: 'Error parsing gpx.' });
+  });
   console.log("single parsedGpx: ", parsedGpx);
-  res.json(parsedGpx);
-  res.end();
+  return res.status(200).json(parsedGpx);
 });
 
 // parse and send to the client all gpx files in the folder "tracks"
@@ -67,10 +69,14 @@ app.get('/tracks/all', async (req, res) => {
     });
 
   for (const file of files) {
-    console.log(file);
-    const parsedGpxFile = await parseAndSendGpx('tracks/' + file);
-    gpxFilesArray.push(parsedGpxFile);
-    console.log("gpxFilesArray length: ", gpxFilesArray.length);
+    try {
+      console.log("gpxFilesArray length: ", gpxFilesArray.length);
+      console.log(file);
+      const parsedGpxFile = await parseAndSendGpx('tracks/' + file);
+      gpxFilesArray.push(parsedGpxFile);
+    } catch (err) {
+      console.log("a gpx file could not be parsed, err: ", err);
+    }
   };
 
   console.log("gpxFilesArray FINAL length: ", gpxFilesArray.length);
@@ -92,14 +98,22 @@ app.post('/tracks', fileUpload({ createParentPath: true }),
     const files = req.files;
     console.log(files);
 
-    Object.keys(files).forEach(key => {
+    for (key of Object.keys(files)) {
       const filepath = path.join(__dirname, 'tracks', files[key].name);
-      files[key].mv(filepath, (err) => {
+      console.log("files[key]: ", files[key]);
+
+      await fsPromises.writeFile(filepath, files[key].data)
+        .catch(err => {
+          console.log("error saving file to the server: ", err);
+          return res.status(500).json({ message: "error uploading file to the server" });
+        });
+      // old synchronous version
+      /* await files[key].mv(filepath, (err) => {
         if (err) {
           return res.status(500).json({ status: "error", message: err });
         }
-      });
-    });
+      }); */
+    };
     console.log('files uploaded successfully');
 
     // 2) parse and send back to the client
@@ -110,9 +124,14 @@ app.post('/tracks', fileUpload({ createParentPath: true }),
       // reminder: key === files[key].name because of the file upload form in the frontend (GlobalMap.js), may change in the future
       console.log("key: ", key);
       console.log("files[key].name: ", files[key].name);
-      const parsedGpxFile = await parseAndSendGpx('tracks/' + files[key].name);
-      userUploadedGpxFiles.push(parsedGpxFile);
-      console.log("userUploadedGpxFiles length: ", userUploadedGpxFiles.length);
+      try {
+        const parsedGpxFile = await parseAndSendGpx('tracks/' + files[key].name)
+        userUploadedGpxFiles.push(parsedGpxFile);
+        console.log("userUploadedGpxFiles length: ", userUploadedGpxFiles.length);
+      } catch (err) {
+        console.log("user uploaded something that wasn't a gpx file!");
+        return res.status(400).json({ message: 'One of your file(s) was not a gpx file.' });
+      };
     };
     console.log("userUploadedGpxFiles FINAL length: ", userUploadedGpxFiles.length);
 

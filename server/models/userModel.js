@@ -10,7 +10,7 @@ const UserSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['admin', 'standard, contributor']
+        enum: ['admin', 'standard', 'contributor']
     },
     hash: String,
     salt: String
@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema({
 UserSchema.methods.setPassword = function (password) {
 
     this.salt = crypto.randomBytes(16).toString('hex');
-    
+
     // Hashing password with 1000 iterations, 64 length and sha512 digest
     this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, "sha512").toString("hex");
 };
