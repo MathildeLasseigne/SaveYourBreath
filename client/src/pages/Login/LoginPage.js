@@ -1,21 +1,26 @@
 import React from 'react';
 import './LoginPage.css';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import AppHeader from '../../components/appheader/AppHeader';
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const { login, error } = useAuth();
+    const { login, error, initializeGpxData } = useAuth();
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // FormData not working without a installing an Express middleware (maybe multer)
-        // const formData = new FormData(document.getElementById("login-form"));
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        login(username, password).then(() => {
+        login(username, password)
+        .then(() => {
+            initializeGpxData();
+        })
+        .then(() => {
             navigate("/");
+        })
+        .catch((error) => {
+            console.error("error while logging in: ", error);
         });
     };
 
@@ -29,10 +34,6 @@ const LoginPage = () => {
                         <div className="group-with-label parent-of-spaced">
                             <span>
                                 <label htmlFor="username">Username</label>
-                                <span className="tooltip-image info-icon">
-                                    <input type="checkbox" className="tooltip-image info-icon native-hidden" />
-                                    <div className="tooltip-text"><span>The mail adress you used to register</span></div>
-                                </span>
                             </span>
                             <input type="text" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter username" />
                         </div>
@@ -41,9 +42,9 @@ const LoginPage = () => {
                             <input type="password" name="password" id="password" placeholder="Password" />
                         </div>
                         {error && <p className="error-message">{error.message}</p>}
-                        <button type="submit" className="big button">Sign In</button>
-                        <button className="big button">Sign Up</button>
+                        <button type="submit" className="big button">Log In</button>
                     </form>
+                    <p>Don't have an account yet? <NavLink to="/register">Sign up</NavLink></p>
                 </div>
             </div>
         </div>

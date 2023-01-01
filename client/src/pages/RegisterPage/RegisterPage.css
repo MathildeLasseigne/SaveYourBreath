@@ -37,7 +37,7 @@
      font-weight: bold;
  }
 
- .error-message {
+ .message--error {
      border: 1px solid;
      padding: 4px 8px 4px 8px;
      background-repeat: no-repeat;
@@ -46,3 +46,13 @@
      background-color: #FFBABA;
      margin: 16px 0px;
  }
+
+  .message--success {
+      border: 1px solid;
+      padding: 4px 8px 4px 8px;
+      background-repeat: no-repeat;
+      background-position: 10px center;
+      color: #11572f;
+      background-color: #72ffad;
+      margin: 16px 0px;
+  }

@@ -3,6 +3,7 @@ import AccountPage from './pages/AccountPage/AccountPage';
 import HomePage from './pages/HomePage/HomePage';
 import TracksPage from './pages/TracksPage/TracksPage';
 import LoginPage from './pages/Login/LoginPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 import {
   Routes,
   Route,
@@ -15,6 +16,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
         <Route path="/" element={
           <RequireLogin>
             <HomePage />
