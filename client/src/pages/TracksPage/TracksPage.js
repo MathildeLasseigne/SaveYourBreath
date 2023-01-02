@@ -3,6 +3,8 @@ import Navbar from '../../components/navbar/Navbar';
 import './TracksPage.css';
 import AppHeader from '../../components/appheader/AppHeader';
 import useAuth from '../../hooks/useAuth';
+import TrackListItem from '../../components/TrackListItem/TrackListItem';
+import dummyTracksData from '../../components/dummyTracksData.json';
 
 const TracksPage = () => {
 
@@ -87,39 +89,27 @@ const TracksPage = () => {
                 </>
             }
 
-            {/* TODO TRACKS: place the upload buttons and error text at the right position (not top of the page like here)
-            + add proper css */}
-            <div className="favourite-tracks">
-                <h2>Favourite Tracks</h2>
-                {favouriteTracks.map((track, index) => (
-                    <div>
-                        <h3>{track.name}</h3>
-                        <p>{track.description}</p>
-                        <p>{track.author}</p>
-                        <p>{track.email}</p>
-                        <p>{track.time}</p>
-                        <p>{track.distance} km</p>
-                        <h4> - {track.author}</h4>
-                        <div>Tags:
-                            {track.tags.map((tag, index) => {
-                                return (
-                                    <span
-                                        key={index}
-                                        className={"tag tag--unclickable"}
-                                    >
-                                        {tag}
-                                    </span>
-                                )
-                            })}
-                        </div>
-                        <button onClick={() => setFavouriteTracks(favouriteTracks.filter((_, i) => i !== index))}>Remove</button>
-                    </div>
-                ))}
-            </div>
-
             {/*<!--First page-->*/}
 
             <div className='first-page'>
+                {/* TODO TRACKS: public tracks list, place it in the right place (not top of the page like here) and edit TrackListItem.js & css */}
+                <div className="public-tracks">
+                    <h2>Public Tracks</h2>
+                    {dummyTracksData.map((track, index) => (
+                        <TrackListItem
+                            key={index}
+                            name={track.name}
+                            description={track.description}
+                            author={track.author}
+                            email={track.email}
+                            time={track.time}
+                            distance={track.distance}
+                            tags={track.tags}
+                            minElevation={track.minElevation}
+                            maxElevation={track.maxElevation}
+                        />
+                    ))}
+                </div>
 
                 <div className="vertical-flex align-content-center justify-content-center">
 
@@ -216,9 +206,31 @@ const TracksPage = () => {
 
             <div className='second-page'>
                 <div className="vertical-flex align-content-center justify-content-center">
-                    <h1>My tracks</h1>
-                    <p>Save a track to begin !</p>
-
+                    <h1>My favourite tracks</h1>
+                    {/* TODO TRACKS: favourite tracks list, there may be nothing left to do if TrackListItem.js & css are finished */}
+                    {favouriteTracks.length === 0 ? (
+                        <p>The tracks added to your favourites will be listed here !</p>
+                    ) : (
+                        <div className="favourite-tracks">
+                            {favouriteTracks.map((track, index) => (
+                                <>
+                                    <TrackListItem
+                                        key={index}
+                                        name={track.name}
+                                        description={track.description}
+                                        author={track.author}
+                                        email={track.email}
+                                        time={track.time}
+                                        distance={track.distance}
+                                        tags={track.tags}
+                                        minElevation={track.minElevation}
+                                        maxElevation={track.maxElevation}
+                                        onClick={() => setFavouriteTracks(favouriteTracks.filter((_, i) => i !== index))}
+                                    />
+                                </>
+                            ))}
+                        </div>
+                    )}
                     <div id='track-favourites'>
                     </div>
 

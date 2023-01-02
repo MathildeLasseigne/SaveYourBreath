@@ -1,0 +1,31 @@
+[
+    {
+        "name": "Urban Forest",
+        "author": "John",
+        "description": "I found the track easy to follow and the views were amazing.",
+        "distance": 5.2,
+        "maxElevation": 100,
+        "minElevation": 50,
+        "time": "20 mins",
+        "tags": [
+            "easy",
+            "nature",
+            "forest"
+        ]
+    },
+    {
+        "name": "Hidden beginning",
+        "author": "Jane",
+        "description": "The beginning of the track was a bit difficult to find, but it was enjoyable.",
+        "distance": 8.2,
+        "maxElevation": 130,
+        "minElevation": 30,
+        "time": "50 mins",
+        "tags": [
+            "intermediate",
+            "roads",
+            "buildings",
+            "forest"
+        ]
+    }
+]

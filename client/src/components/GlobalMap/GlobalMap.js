@@ -7,6 +7,8 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 import useAuth from "../../hooks/useAuth";
 import favouriteIcon from "../../assets/favourite.svg";
 import favouriteFilledIcon from "../../assets/favourite_filled.svg";
+import dummyTracksData from "../dummyTracksData.json";
+
 
 // hack so that leaflet's icons work after going through webpack
 // credit: https://github.com/PaulLeCam/react-leaflet/issues/255#issuecomment-388492108
@@ -31,28 +33,6 @@ const GlobalMap = () => {
   const [filteredTags, setFilteredTags] = useState([]);
 
   // const gpxFakeData = [[48.7107847, 2.1714978], [48.71052834675527, 2.172627104448315]];
-  const dummyTracksData = [
-    {
-      "name": "Urban Forest",
-      "author": "John",
-      "description": "I found the track easy to follow and the views were amazing.",
-      "distance": 5.2,
-      "maxElevation": 100,
-      "minElevation": 50,
-      "time": "20 mins",
-      "tags": ["easy", "nature", "forest"] // first tag is the difficulty
-    },
-    {
-      "name": "Hidden beginning",
-      "author": "Jane",
-      "description": "The beginning of the track was a bit difficult to find, but it was enjoyable.",
-      "distance": 8.2,
-      "maxElevation": 130,
-      "minElevation": 30,
-      "time": "50 mins",
-      "tags": ["intermediate", "roads", "buildings", "forest"]
-    }
-  ];
 
   const handleTagClick = (tag) => {
     // if tag is already in filteredTags, remove it
@@ -197,9 +177,9 @@ const GlobalMap = () => {
             <h5><i>Tip: you can filter the map by tapping on a track and selecting tag(s)</i></h5>
 
             {/* TODO: delete debug buttons below for production */}
-            <button onClick={() => console.log(gpxData)}>Log gpx data</button>
+            {/* <button onClick={() => console.log(gpxData)}>Log gpx data</button>
             <button onClick={() => console.log(filteredTags)}>Log filtered tags</button>
-            <button onClick={() => console.log(favouriteTracks)}>Log favourite tracks</button>
+            <button onClick={() => console.log(favouriteTracks)}>Log favourite tracks</button> */}
 
           </div>
         ) : (
@@ -219,7 +199,7 @@ const GlobalMap = () => {
             }
 
             {/* TODO: delete debug buttons below for production */}
-            <button onClick={() => console.log(filteredTags)}>Log filtered tags</button>
+            {/* <button onClick={() => console.log(filteredTags)}>Log filtered tags</button> */}
 
           </div>
         )}
