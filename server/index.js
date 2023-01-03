@@ -102,6 +102,10 @@ app.post('/tracks', fileUpload({ createParentPath: true }),
       const filepath = path.join(__dirname, 'tracks', files[key].name);
       console.log("files[key]: ", files[key]);
 
+      if (path.extname(files[key].name) !== '.gpx') {
+        return res.status(500).json({ message: "error, file extension is not .gpx" });
+      }
+
       await fsPromises.writeFile(filepath, files[key].data)
         .catch(err => {
           console.log("error saving file to the server: ", err);
