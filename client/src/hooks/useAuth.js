@@ -60,6 +60,10 @@ function useAuth() {
                         username: data.username,
                         role: data.role
                     });
+                    // clean up error message if exists
+                    if (error) {
+                        setError(null);
+                    }
                 })
                 .catch((error) => {
                     console.error('could not fetch /login, error:', error);

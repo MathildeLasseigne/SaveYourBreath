@@ -12,16 +12,8 @@ const AccountPage = () => {
             <AppHeader className="small" />
 
             <div className="vertical-flex align-content-center justify-content-center">
-
-                {/*roleChooser checkbox: check it to display regular users only, uncheck for contributors only*/}
-                <input type="checkbox" className="roleChooser native-hidden" checked />
-
                 <h1>Account</h1>
-
                 <p>{user.username}</p>
-
-                <div className="contributor-reserved italic margins big">Contributor</div>
-
                 <div className="margins big">Welcome to Save your Breath !</div>
 
                 {user.role === "contributor" ? (
@@ -31,7 +23,7 @@ const AccountPage = () => {
                     </div>
                 ) : (
                     <div className="vertical-flex align-content-center justify-content-center box margin-top">
-                        <div className="regular-users-only">
+                        <div>
                             Do you want to help out by contributing your own tracks ? Become a contributor now !
                         </div>
                         <NavLink
@@ -40,7 +32,7 @@ const AccountPage = () => {
                         >
                             Apply
                         </NavLink>
-                        <div className="contributor-reserved">
+                        <div>
                             As a contributor, you can go to the Tracks page to contribute your own tracks to the database !
                         </div>
                     </div>
