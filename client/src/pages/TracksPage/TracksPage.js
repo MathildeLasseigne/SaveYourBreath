@@ -93,44 +93,59 @@ const TracksPage = () => {
 
             <div className='first-page'>
                 {/* TODO TRACKS: public tracks list, place it in the right place (not top of the page like here) and edit TrackListItem.js & css */}
-                <div className="public-tracks">
-                    <h2>Public Tracks</h2>
-                    {dummyTracksData.map((track, index) => (
-                        <TrackListItem
-                            key={index}
-                            name={track.name}
-                            description={track.description}
-                            author={track.author}
-                            email={track.email}
-                            time={track.time}
-                            distance={track.distance}
-                            tags={track.tags}
-                            minElevation={track.minElevation}
-                            maxElevation={track.maxElevation}
-                        />
-                    ))}
-                </div>
+                
 
                 <div className="vertical-flex align-content-center justify-content-center">
 
 
 
 
-                    <h1>Tracks</h1>
+                    <h1>Public Tracks</h1>
 
-                    <div className="dropdown contributor-reserved">
-                        <input type="checkbox" id="menuTrackSubmission" className="buttonControl" />
-                        <label className="menu-button" for="menuTrackSubmission">Contributor Tracks</label>
-                        <div className="dropdown-content">
-                            <a href="#">My tracks</a>
-                            <a href="#">Add a new track</a>
-                        </div>
-                    </div> {/*<!--End of dropdown-->*/}
+                    {/* TODO TRACKS: place the upload buttons and error text at the right position (not top of the page like here) */}
+                    {user.role === "contributor" &&
+                        <>
+                            <form onSubmit={handleUpload} method="post" encType="multipart/form-data">
+                                <input type="file" name="file" multiple />
+                                <input type="submit" value="Upload" />
+                            </form>
+                            {uploadResultMessage && <p>{uploadResultMessage}</p>}
 
-                    <p>Search for a track to display results</p>
+                            <div className="dropdown contributor-reserved">
+                                <input type="checkbox" id="menuTrackSubmission" className="buttonControl" />
+                                <label className="menu-button" for="menuTrackSubmission">Contributor Tracks</label>
+                                <div className="dropdown-content">
+                                    <a href="#">My tracks</a>
+                                    <a href="#">Add a new track</a> {/* Juste une lien vers une page 'upload' */}
+                                </div>
+                            </div> {/*<!--End of dropdown-->*/}
+                            
+                        </>
+                    }
+
+                    
+
 
                     <div id="track-results" className="vertical-flex align-content-center justify-content-center all-width">
 
+
+                        <div className="public-tracks">
+                            <h2>Public Tracks</h2>
+                            {dummyTracksData.map((track, index) => (
+                                <TrackListItem
+                                    key={index}
+                                    name={track.name}
+                                    description={track.description}
+                                    author={track.author}
+                                    email={track.email}
+                                    time={track.time}
+                                    distance={track.distance}
+                                    tags={track.tags}
+                                    minElevation={track.minElevation}
+                                    maxElevation={track.maxElevation}
+                                />
+                            ))}
+                        </div>
 
                         <table className="track-form margins big">
                             <tr className="track-form">
@@ -237,6 +252,7 @@ const TracksPage = () => {
                 </div>
 
             </div>
+            <div className='navbar-push'></div>
             <Navbar />
         </>
     );

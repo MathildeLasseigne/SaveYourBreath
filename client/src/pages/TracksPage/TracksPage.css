@@ -304,3 +304,7 @@ background-color: orange;
 .favourite-button[type="checkbox"]:checked{
   content: url('https://i.postimg.cc/VN5FKkYW/heart-filled.png');
 }
+
+.navbar-push{
+  margin-bottom: 64px;
+}
