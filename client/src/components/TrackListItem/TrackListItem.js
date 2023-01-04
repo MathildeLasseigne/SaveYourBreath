@@ -57,8 +57,8 @@ const TrackListItem = ({ name, author, description, distance, time, minElevation
                 {tags.map((tag, index) => {
                     return (
                         <span
+                            className={`tag  tag--unclickable ${index === 0 ? `tag-difficulty-color` : ''} ${difficulty}`}
                             key={index}
-                            className={"tag tag--unclickable"}
                         >
                             {tag}
                         </span>

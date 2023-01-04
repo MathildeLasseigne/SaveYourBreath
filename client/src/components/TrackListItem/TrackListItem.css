@@ -137,16 +137,16 @@
 
 /***************** Difficulty flag ***********************/
 
-.difficulty-flag.easy {
-  background-color: green;
+.difficulty-flag.easy, .tag-difficulty-color.easy{
+  background-color: rgb(119,221,119);
 }
 
-.difficulty-flag.medium {
-  background-color: orange;
+.difficulty-flag.medium, .tag-difficulty-color.medium{
+  background-color: rgb(239,190,125);
 }
 
-.difficulty-flag.hard {
-  background-color: red;
+.difficulty-flag.hard, .tag-difficulty-color.hard{
+  background-color: rgb(255,109,106);
 }
 
 .difficulty-flag {
