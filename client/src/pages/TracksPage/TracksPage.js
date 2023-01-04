@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import './TracksPage.css';
 import AppHeader from '../../components/appheader/AppHeader';
@@ -8,18 +8,11 @@ import dummyTracksData from '../../components/dummyTracksData.json';
 
 const TracksPage = () => {
 
-     const url = "http://localhost:8080/";
-    // if using github codespace
-    //const url = "https://d-bao-organic-telegram-647p6q7ww77246pw-8080.preview.app.github.dev";
+    const serverUrl = "http://localhost:8080/";
 
     const { setGpxData, user } = useAuth();
     const { favouriteTracks, setFavouriteTracks } = useAuth();
     const [uploadResultMessage, setUploadErrorMessage] = useState("");
-
-    const favouriteTrack = (e) => {
-        //TODO: Favourite the track and add it to the 2nd page (in this file)
-        //EDIT: cancelled for now, favouriting a track is already done in the map page
-    };
 
     const handleUpload = async (e) => {
         e.preventDefault();
@@ -43,7 +36,7 @@ const TracksPage = () => {
             formData.append(myFiles.item(key).name, myFiles.item(key))
         })
 
-        return fetch(url + '/tracks', {
+        return fetch(serverUrl + '/tracks', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json'
@@ -75,29 +68,17 @@ const TracksPage = () => {
         <>
             <AppHeader className="small" />
             {/*<!--Page controller-->*/}
-
             <input type="checkbox" className="double-sided-image-button native-hidden" />
 
-
-            {/*<!--First page-->*/}
-
+            {/*<!--Default page with public tracks-->*/}
             <div className='first-page'>
-                {/* TODO TRACKS: public tracks list, place it in the right place (not top of the page like here) and edit TrackListItem.js & css */}
-                
-
                 <div className="vertical-flex align-content-center justify-content-center">
-
-
-
-
                     <h1>Public Tracks</h1>
-
-                    {/* TODO TRACKS: place the upload buttons and error text at the right position (not top of the page like here) */}
                     {user.role === "contributor" &&
                         <>
                             <div className="dropdown contributor-reserved">
                                 <input type="checkbox" id="menuTrackSubmission" className="buttonControl" />
-                                <label className="menu-button" htmlFor="menuTrackSubmission">Contributor Tracks</label>
+                                <label className="menu-button" htmlFor="menuTrackSubmission">Import your tracks</label>
                                 <div className="dropdown-content">
                                     <div>
                                     <div>Add a new track</div>
@@ -107,21 +88,11 @@ const TracksPage = () => {
                                     </form>
                                     {uploadResultMessage && <p>{uploadResultMessage}</p>}
                                     </div>
-                                    
-                                    {/**<a href="#">Add a new track</a> */} {/* Juste une lien vers une page 'upload' */}
                                 </div>
                             </div> {/*<!--End of dropdown-->*/}
-                            
                         </>
                     }
-
-
-                    
-
-
                     <div id="track-results" className="vertical-flex align-content-center justify-content-center all-width">
-
-
                         <div className="public-tracks">
                             {dummyTracksData.map((track, index) => (
                                 <TrackListItem
@@ -139,22 +110,14 @@ const TracksPage = () => {
                                 />
                             ))}
                         </div>
-
-
                     </div>
-
-
-
                 </div>
-
             </div>
 
-            {/*<!--Second page-->*/}
-
+            {/*<!--Favorite tracks page-->*/}
             <div className='second-page'>
                 <div className="vertical-flex align-content-center justify-content-center">
                     <h1>My favourite tracks</h1>
-                    {/* TODO TRACKS: favourite tracks list, there may be nothing left to do if TrackListItem.js & css are finished */}
                     {favouriteTracks.length === 0 ? (
                         <p>The tracks added to your favourites will be listed here !</p>
                     ) : (
@@ -181,9 +144,7 @@ const TracksPage = () => {
                     )}
                     <div id='track-favourites'>
                     </div>
-
                 </div>
-
             </div>
             <div className='navbar-push'></div>
             <Navbar />

@@ -1,6 +1,5 @@
 import './TrackListItem.css'
 
-// TODO TRACKS: improve style
 const TrackListItem = ({ name, author, description, distance, time, minElevation, maxElevation, difficulty, tags, onClick }) => {
     return (
         <div className="track-list-item">
@@ -10,7 +9,7 @@ const TrackListItem = ({ name, author, description, distance, time, minElevation
 
             <div className='flex-table-colomn box-background'>
                 <div className='flex-table-row'>
-                    <div>
+                    <div className="flex-table-row__item">
                         <span className="tooltip-icon">
                             <input type="checkbox" id="distance-icon" className="tooltip-image tooltip-icon native-hidden" />
                             <div className="tooltip-text small"><span>Distance</span></div>
@@ -18,7 +17,7 @@ const TrackListItem = ({ name, author, description, distance, time, minElevation
                         <span className='track-list-item__distance'>{distance} km</span>
                     </div>
 
-                    <div>
+                    <div className="flex-table-row__item">
                         <span className="tooltip-image tooltip-icon">
                             <input type="checkbox" id="time-icon" className="tooltip-image tooltip-icon native-hidden" />
                             <div className="tooltip-text small"><span>Time</span></div>
@@ -28,7 +27,7 @@ const TrackListItem = ({ name, author, description, distance, time, minElevation
                 </div>
 
                 <div className='flex-table-row'>
-                    <div>
+                    <div className="flex-table-row__item">
                         <span className="tooltip-image tooltip-icon">
                             <input type="checkbox" id="trend-up-icon" className="tooltip-image tooltip-icon native-hidden" />
                             <div className="tooltip-text small"><span>Uphill</span></div>
@@ -36,7 +35,7 @@ const TrackListItem = ({ name, author, description, distance, time, minElevation
                         <span className='track-list-item__minElevation'>{minElevation}</span>
                     </div>
 
-                    <div>
+                    <div className="flex-table-row__item">
                         <span className="tooltip-image tooltip-icon">
                             <input type="checkbox" id="trend-down-icon" className="tooltip-image tooltip-icon native-hidden" />
                             <div className="tooltip-text small"><span>Downhill</span></div>
@@ -44,7 +43,7 @@ const TrackListItem = ({ name, author, description, distance, time, minElevation
                         <span className='track-list-item__maxElevation'>{maxElevation}</span>
                     </div>
 
-                    <div>
+                    <div className="flex-table-row__item">
                         <span className="tooltip-image tooltip-icon">
                             <input type="checkbox" id="difficulty-icon" className="tooltip-image tooltip-icon native-hidden" />
                             <div className="tooltip-text small"><span>Difficulty</span></div>
