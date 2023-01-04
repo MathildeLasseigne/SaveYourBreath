@@ -10,12 +10,10 @@ const RoleApplyPage = () => {
 
     const { user, setUser } = useAuth();
 
-     const url = "http://localhost:8080";
-    // if using github codespace
-    //const url = "https://d-bao-organic-telegram-647p6q7ww77246pw-8080.preview.app.github.dev";
+    const serverUrl = "http://localhost:8080";
 
     const updateUser = async (inputUser) => {
-        return fetch(url + '/users/' + user.id, {
+        return fetch(serverUrl + '/users/' + user.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

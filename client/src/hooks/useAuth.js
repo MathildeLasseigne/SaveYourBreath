@@ -2,9 +2,7 @@ import { useState, useContext, createContext } from 'react';
 
 const authContext = createContext();
 
-const codespacesUrl = "http://localhost:8080";
-// if using github codespaces
-//const codespacesUrl = "https://d-bao-organic-telegram-647p6q7ww77246pw-8080.preview.app.github.dev";
+const serverUrl = "http://localhost:8080";
 
 function useAuth() {
     const [user, setUser] = useState(null);
@@ -21,7 +19,7 @@ function useAuth() {
         favouriteTracks,
         setFavouriteTracks,
         async initializeGpxData() {
-            return fetch(codespacesUrl + '/tracks/all')
+            return fetch(serverUrl + '/tracks/all')
                 .then((response) => response.ok ? (response.json()) : (response.json().then((error) => { throw error; })))
                 .then((data) => {
                     if (gpxData.includes(data)) {
@@ -40,7 +38,7 @@ function useAuth() {
                 username: username,
                 password: password
             }
-            return fetch(codespacesUrl + '/login', {
+            return fetch(serverUrl + '/login', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -75,7 +73,7 @@ function useAuth() {
                 username: username,
                 password: password
             }
-            return fetch(codespacesUrl + '/register', {
+            return fetch(serverUrl + '/register', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

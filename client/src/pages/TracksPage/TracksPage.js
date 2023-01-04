@@ -89,7 +89,7 @@ const TracksPage = () => {
                                     {uploadResultMessage && <p>{uploadResultMessage}</p>}
                                     </div>
                                 </div>
-                            </div> {/*<!--End of dropdown-->*/}
+                            </div>
                         </>
                     }
                     <div id="track-results" className="vertical-flex align-content-center justify-content-center all-width">
@@ -142,8 +142,6 @@ const TracksPage = () => {
                             ))}
                         </div>
                     )}
-                    <div id='track-favourites'>
-                    </div>
                 </div>
             </div>
             <div className='navbar-push'></div>
