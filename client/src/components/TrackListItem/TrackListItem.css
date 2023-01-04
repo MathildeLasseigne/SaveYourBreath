@@ -2,3 +2,152 @@
   border-bottom: 1px solid #ccc;
   padding: 10px;
 }
+
+
+/*************** Flex table ***************************/
+
+.flex-table-row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1.5em;
+}
+
+.flex-table-colomn{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.box-background{
+  background-color: #f9f9f9;
+  border: 0.125em solid #e0e0e0;
+  /*border-radius: 0.3em;*/
+  margin: 0.9em;
+}
+
+
+
+/******************** Tooltip ****************************/
+
+.tooltip-icon{
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+  vertical-align:middle;
+}
+
+.tooltip-image:checked+.tooltip-text {
+  display: inline-block;
+}
+
+.tooltip-text {
+  position: absolute;
+  display: none;
+  font-size: 80%;
+  text-align: center;
+  width: 10em;
+  top: -100%;
+  left: 200%;
+  background-color: #f9f9f9;
+  border: 0.125em solid #e0e0e0;
+  border-radius: 0.3em;
+  padding: 0.9em;
+}
+
+.tooltip-text.small{
+position: absolute;
+  display: none;
+  font-size: 70%;
+  text-align: center;
+  width: auto;
+  top: -100%;
+  left: 100%;
+  background-color: #f9f9f9;
+  border: 0.125em solid #e0e0e0;
+  border-radius: 0.3em;
+  
+}
+
+@media (max-width: 480px) {
+  .tooltip-text {
+      position: absolute;
+      display: none;
+      font-size: 80%;
+      text-align: center;
+      width: 10em;
+      top: -4.8em;
+      left: -10em;
+      background-color: #f9f9f9;
+      border: 0.125em solid #e0e0e0;
+      border-radius: 0.3em;
+      padding: 0.9em;
+  }
+  
+  .tooltip-text.small{
+      position: absolute;
+      display: none;
+      font-size: 70%;
+      text-align: center;
+      width: auto;
+      top: -200%;
+      left: -75%;
+      background-color: #f9f9f9;
+      border: 0.125em solid #e0e0e0;
+      border-radius: 0.3em;
+
+  }
+}
+
+.tooltip-icon-width{
+  width: 1.5em;
+  height: 1.5em;
+}
+
+#distance-icon.tooltip-icon[type="checkbox"]{
+  content: url('https://i.postimg.cc/cCZ8xqxb/distance.png');
+}
+
+#time-icon.tooltip-icon[type="checkbox"]{
+  content: url('https://i.postimg.cc/HkRnWJdN/clock.png');
+}
+
+#trend-up-icon.tooltip-icon[type="checkbox"]{
+  content: url('https://i.postimg.cc/tCy2D5nX/trend-up.png');
+}
+
+#trend-down-icon.tooltip-icon[type="checkbox"]{
+  content: url('https://i.postimg.cc/5042nDJB/trend-down.png');
+}
+
+#difficulty-icon.tooltip-icon[type="checkbox"]{
+  content: url('https://i.postimg.cc/QN1Cqgcx/flag.png');
+}
+
+
+/***************** Difficulty flag ***********************/
+
+.difficulty-flag.easy{
+  background-color: green;
+}
+
+.difficulty-flag.medium{
+  background-color: orange;
+}
+
+.difficulty-flag.hard{
+  background-color: red;
+}
+
+.difficulty-flag{
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;  
+  display: inline-block;
+}
+  
