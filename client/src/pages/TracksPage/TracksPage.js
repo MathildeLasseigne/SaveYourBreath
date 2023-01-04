@@ -8,7 +8,7 @@ import dummyTracksData from '../../components/dummyTracksData.json';
 
 const TracksPage = () => {
 
-    const serverUrl = "http://localhost:8080/";
+    const serverUrl = "http://localhost:8080";
 
     const { setGpxData, user } = useAuth();
     const { favouriteTracks, setFavouriteTracks } = useAuth();
