@@ -8,9 +8,9 @@ import dummyTracksData from '../../components/dummyTracksData.json';
 
 const TracksPage = () => {
 
-    // const url = "http://localhost:8080/";
+     const url = "http://localhost:8080/";
     // if using github codespace
-    const url = "https://d-bao-organic-telegram-647p6q7ww77246pw-8080.preview.app.github.dev";
+    //const url = "https://d-bao-organic-telegram-647p6q7ww77246pw-8080.preview.app.github.dev";
 
     const { setGpxData, user } = useAuth();
     const { favouriteTracks, setFavouriteTracks } = useAuth();
@@ -130,7 +130,6 @@ const TracksPage = () => {
 
 
                         <div className="public-tracks">
-                            <h2>Public Tracks</h2>
                             {dummyTracksData.map((track, index) => (
                                 <TrackListItem
                                     key={index}
@@ -140,73 +139,13 @@ const TracksPage = () => {
                                     email={track.email}
                                     time={track.time}
                                     distance={track.distance}
+                                    difficulty={track.difficulty}
                                     tags={track.tags}
                                     minElevation={track.minElevation}
                                     maxElevation={track.maxElevation}
                                 />
                             ))}
                         </div>
-
-                        <table className="track-form margins big">
-                            <tr className="track-form">
-                                <td className="track-form" colspan="6">
-                                    <span className="tooltip-icon">
-                                        <input type="checkbox" id="distance-icon" className="tooltip-image tooltip-icon native-hidden" />
-                                        <div className="tooltip-text small"><span>Distance</span></div>
-                                    </span>
-                                    <span><span id="distance-entry">56</span><span> km</span></span>
-
-                                </td>
-
-                                <td className="track-form" colspan="6">
-
-                                    <span className="tooltip-image tooltip-icon">
-                                        <input type="checkbox" id="time-icon" className="tooltip-image tooltip-icon native-hidden" />
-                                        <div className="tooltip-text small"><span>Time</span></div>
-                                    </span>
-
-                                    <span><span id="time-entry">120</span><span> min</span></span>
-                                </td>
-
-                                <td class="track-form" colspan="3">
-                                    <input type="checkbox" onchange={favouriteTrack(this)} className="tooltip-icon-width favourite-button native-hidden" />
-                                </td>
-
-                            </tr>
-
-                            <tr className="track-form">
-
-                                <td className="track-form" colspan="5">
-                                    <span className="tooltip-image tooltip-icon">
-                                        <input type="checkbox" id="trend-up-icon" className="tooltip-image tooltip-icon native-hidden" />
-                                        <div className="tooltip-text small"><span>Uphill</span></div>
-                                    </span>
-
-                                    <span><span id="uphill-entry">137</span><span> m</span></span>
-                                </td>
-
-                                <td className="track-form" colspan="5">
-                                    <span className="tooltip-image tooltip-icon">
-                                        <input type="checkbox" id="trend-down-icon" className="tooltip-image tooltip-icon native-hidden" />
-                                        <div className="tooltip-text small"><span>Downhill</span></div>
-                                    </span>
-
-                                    <span><span id="downhill-entry">44</span><span> m</span></span>
-                                </td>
-
-                                <td className="track-form" colspan="5">
-                                    <span className="tooltip-image tooltip-icon">
-                                        <input type="checkbox" id="difficulty-icon" className="tooltip-image tooltip-icon native-hidden" />
-                                        <div className="tooltip-text small"><span>Difficulty</span></div>
-                                    </span>
-
-                                    <span className="difficulty-flag" id="difficulty-entry"></span>
-                                </td>
-
-                            </tr>
-
-                        </table>
-
 
 
                     </div>
@@ -237,6 +176,7 @@ const TracksPage = () => {
                                         email={track.email}
                                         time={track.time}
                                         distance={track.distance}
+                                        difficulty={track.difficulty}
                                         tags={track.tags}
                                         minElevation={track.minElevation}
                                         maxElevation={track.maxElevation}

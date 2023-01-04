@@ -7,8 +7,8 @@
         "maxElevation": 100,
         "minElevation": 50,
         "time": "20 mins",
+        "difficulty": "easy",
         "tags": [
-            "easy",
             "nature",
             "forest"
         ]
@@ -21,11 +21,57 @@
         "maxElevation": 130,
         "minElevation": 30,
         "time": "50 mins",
+        "difficulty": "medium",
         "tags": [
-            "intermediate",
             "roads",
             "buildings",
             "forest"
+        ]
+    },
+    {
+        "name": "The ancient farm",
+        "author": "John",
+        "description": "Go close to the farm and you will see the ancient ruins. But be careful when it rains, the track can be slippery.",
+        "distance": 4.9,
+        "maxElevation": 45,
+        "minElevation": 30,
+        "time": "1 h",
+        "difficulty": "easy",
+        "tags": [
+            "roads",
+            "animals",
+            "forest",
+            "slippery"
+        ]
+    },
+    {
+        "name": "The university",
+        "author": "Catherine",
+        "description": "Pass by the new University. Be careful, many students are walking around.",
+        "distance": 4.9,
+        "maxElevation": 45,
+        "minElevation": 30,
+        "time": "1 h",
+        "difficulty": "easy",
+        "tags": [
+            "roads",
+            "city",
+            "crowded"
+        ]
+    },
+    {
+        "name": "The Gif-Sur-Yvette Forest",
+        "author": "Mattieu",
+        "description": "Go to the Gif-Sur-Yvette Forest. It is a nice place to bike around. Because it is a forest, be careful when it rains, the track can be slippery. Furthermore, many roots are on the track, so be careful.",
+        "distance": 15,
+        "maxElevation": 210,
+        "minElevation": 250,
+        "time": "4 h",
+        "difficulty": "hard",
+        "tags": [
+            "dirt path",
+            "forest",
+            "slippery"
         ]
     }
 ]
