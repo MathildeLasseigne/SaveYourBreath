@@ -14,7 +14,7 @@ const loginUser = async (req, res) => {
         // catch error
         if (err) {
             console.log(err);
-            return res.status(400).json({
+            return res.status(500).json({
                 message: "Database error."
             });
         }

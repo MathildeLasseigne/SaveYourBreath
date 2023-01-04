@@ -56,9 +56,9 @@ const GlobalMap = () => {
 
   // return a (not so) bluish color hex code based on a number
   const getColorFromNumber = (number) => {
-    const redAmount = ((number + 1) * 40) % 255;
-    const greenAmount = ((number + 1) * 40) % 255;
-    const blueAmount = ((number + 1) * 80) % 255;
+    const redAmount = ((number + 1) * 20 + 80) % 255;
+    const greenAmount = ((number + 1) * 28 + 40) % 255;
+    const blueAmount = ((number + 1) * 50 + 80) % 255;
     console.log("#" + redAmount.toString(16) + greenAmount.toString(16) + blueAmount.toString(16));
     return "#" + redAmount.toString(16) + greenAmount.toString(16) + blueAmount.toString(16);
   }
@@ -71,8 +71,8 @@ const GlobalMap = () => {
         className="global-map"
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         />
         {gpxData.length > 0 && gpxData.map((data, index) => {
           /* return Polyline only if the tag is in filteredTags, else if filteredTags is empty, return all Polyline */
@@ -175,12 +175,6 @@ const GlobalMap = () => {
         (
           <div className="filter-container filter-container--no-tag-selected">
             <h5><i>Tip: you can filter the map by tapping on a track and selecting tag(s)</i></h5>
-
-            {/* TODO: delete debug buttons below for production */}
-            {/* <button onClick={() => console.log(gpxData)}>Log gpx data</button>
-            <button onClick={() => console.log(filteredTags)}>Log filtered tags</button>
-            <button onClick={() => console.log(favouriteTracks)}>Log favourite tracks</button> */}
-
           </div>
         ) : (
           <div className="filter-container">
@@ -197,10 +191,6 @@ const GlobalMap = () => {
               )
             })
             }
-
-            {/* TODO: delete debug buttons below for production */}
-            {/* <button onClick={() => console.log(filteredTags)}>Log filtered tags</button> */}
-
           </div>
         )}
 
