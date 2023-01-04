@@ -43,14 +43,13 @@ const TrackListItem = ({ name, author, description, distance, time, minElevation
                         <span className='track-list-item__maxElevation'>{maxElevation}</span>
                     </div>
 
-                    <div className="flex-table-row__item">
+                    {/* <div className="flex-table-row__item">
                         <span className="tooltip-image tooltip-icon">
                             <input type="checkbox" id="difficulty-icon" className="tooltip-image tooltip-icon native-hidden" />
                             <div className="tooltip-text small"><span>Difficulty</span></div>
                         </span>
-
                         <span className={`difficulty-flag ${difficulty}`}></span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

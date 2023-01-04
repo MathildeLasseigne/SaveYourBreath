@@ -9,6 +9,7 @@
         "time": "20 mins",
         "difficulty": "easy",
         "tags": [
+            "easy",
             "nature",
             "forest"
         ]
@@ -23,6 +24,7 @@
         "time": "50 mins",
         "difficulty": "medium",
         "tags": [
+            "medium",
             "roads",
             "buildings",
             "forest"
@@ -38,6 +40,7 @@
         "time": "1 h",
         "difficulty": "easy",
         "tags": [
+            "easy",
             "roads",
             "animals",
             "forest",
@@ -54,6 +57,7 @@
         "time": "1 h",
         "difficulty": "easy",
         "tags": [
+            "easy",
             "roads",
             "city",
             "crowded"
@@ -69,6 +73,7 @@
         "time": "4 h",
         "difficulty": "hard",
         "tags": [
+            "hard",
             "dirt path",
             "forest",
             "slippery"
