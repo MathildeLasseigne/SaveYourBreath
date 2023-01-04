@@ -78,16 +78,6 @@ const TracksPage = () => {
 
             <input type="checkbox" className="double-sided-image-button native-hidden" />
 
-            {/* TODO TRACKS: place the upload buttons and error text at the right position (not top of the page like here) */}
-            {user.role === "contributor" &&
-                <>
-                    <form onSubmit={handleUpload} method="post" encType="multipart/form-data">
-                        <input type="file" name="file" multiple />
-                        <input type="submit" value="Upload" />
-                    </form>
-                    {uploadResultMessage && <p>{uploadResultMessage}</p>}
-                </>
-            }
 
             {/*<!--First page-->*/}
 
@@ -105,23 +95,26 @@ const TracksPage = () => {
                     {/* TODO TRACKS: place the upload buttons and error text at the right position (not top of the page like here) */}
                     {user.role === "contributor" &&
                         <>
-                            <form onSubmit={handleUpload} method="post" encType="multipart/form-data">
-                                <input type="file" name="file" multiple />
-                                <input type="submit" value="Upload" />
-                            </form>
-                            {uploadResultMessage && <p>{uploadResultMessage}</p>}
-
                             <div className="dropdown contributor-reserved">
                                 <input type="checkbox" id="menuTrackSubmission" className="buttonControl" />
-                                <label className="menu-button" for="menuTrackSubmission">Contributor Tracks</label>
+                                <label className="menu-button" htmlFor="menuTrackSubmission">Contributor Tracks</label>
                                 <div className="dropdown-content">
-                                    <a href="#">My tracks</a>
-                                    <a href="#">Add a new track</a> {/* Juste une lien vers une page 'upload' */}
+                                    <div>
+                                    <div>Add a new track</div>
+                                    <form onSubmit={handleUpload} method="post" encType="multipart/form-data">
+                                        <input type="file" name="file" multiple />
+                                        <input type="submit" value="Upload" />
+                                    </form>
+                                    {uploadResultMessage && <p>{uploadResultMessage}</p>}
+                                    </div>
+                                    
+                                    {/**<a href="#">Add a new track</a> */} {/* Juste une lien vers une page 'upload' */}
                                 </div>
                             </div> {/*<!--End of dropdown-->*/}
                             
                         </>
                     }
+
 
                     
 

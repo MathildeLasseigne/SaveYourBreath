@@ -96,6 +96,19 @@ body, html {
   .dropdown-content a:hover {
     background-color: #f1f1f1;
     }
+  
+  /* Divs inside the dropdown */
+  .dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown divs on hover */
+  .dropdown-content div:hover {
+    background-color: #f1f1f1;
+    }
     
    .buttonControl{
     display: none;
