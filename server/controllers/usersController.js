@@ -29,7 +29,7 @@ module.exports = { updateUser };
 // copypaste to test the users api
 /*
 curl -X PUT \
-  'https://d-bao-organic-telegram-647p6q7ww77246pw-8080.preview.app.github.dev/users/63a9a9f99bd7ee1c6354103f' \
+  'http://localhost:8080/users/63a9a9f99bd7ee1c6354103f' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'role=standard'
 */
