@@ -81,12 +81,12 @@ const TracksPage = () => {
                                 <label className="menu-button" htmlFor="menuTrackSubmission">Import your tracks</label>
                                 <div className="dropdown-content">
                                     <div>
-                                    <div>Add a new track</div>
-                                    <form onSubmit={handleUpload} method="post" encType="multipart/form-data">
-                                        <input type="file" name="file" multiple />
-                                        <input type="submit" value="Upload" />
-                                    </form>
-                                    {uploadResultMessage && <p>{uploadResultMessage}</p>}
+                                        <div>Add a new track</div>
+                                        <form onSubmit={handleUpload} method="post" encType="multipart/form-data">
+                                            <input type="file" name="file" multiple />
+                                            <input type="submit" value="Upload" className="big button" />
+                                        </form>
+                                        {uploadResultMessage && <p>{uploadResultMessage}</p>}
                                     </div>
                                 </div>
                             </div>
