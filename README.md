@@ -15,3 +15,6 @@ cd client
 npm install
 npm start
 ```
+
+#### Icons
+Some icons are from [Ionicons](https://github.com/ionic-team/ionicons) which is MIT-licensed.
